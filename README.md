@@ -34,7 +34,7 @@ ShowMessage( Format( _T( "a=%g" ), ARRAYOFCONST(( static_cast<long double>( a ) 
 
 The culprit is TVarRec which, e.g., manifests the problem when compiled with bcc32c. Since we can't change TVarRec, we can try to rewrite the Format function, making sure it can accept floating point parameters other than long double without reporting errors.
 
-Another purpose of this library is to eliminate the need to use the ARRAYOFCONST macro, as horrible as almost all macros. The ARRAYOFCONST macro is a forced choice with compilers prior to the C ++ 11 standard. But bcc32c and bcc64 are modern compilers and support 'variadic arguments', so you can get rid of the ARRAYOFCONST macro and get a simpler and cleaner use.
+Another purpose of this library is to eliminate the need to use the ARRAYOFCONST macro, as horrible as almost all macros. The ARRAYOFCONST macro is a forced choice with compilers prior to the C++11 standard. But bcc32c and bcc64 are modern compilers and support 'variadic arguments', so you can get rid of the ARRAYOFCONST macro and get a simpler and cleaner use.
 ### Prerequisites
 
 It surely works with RAD Studio or C++Builder from 10.3.3 and higher.
@@ -96,14 +96,14 @@ Produces:
 
 The function is called Fmt and lives in the SysUt namespace.
 
-Since the SysUt::Fmt is based on System::Sysutils::Format, the syntax of the formatting string does not change: please see the official help of RAD Studio or C ++ Builder for details.
+Since the SysUt::Fmt is based on System::Sysutils::Format, the syntax of the formatting string does not change: please see the official help of RAD Studio or C++Builder for details.
 
 As a bonus, there is also a wrapper around the OutputDebugString API which is used as the aforeseen Fmt function. The OutputDebugString function is very useful while debugging when breakpoints are too intrusive. Unfortunately, it is only able to accept LPTSTR. The wrapper around OutputDebugString provided here makes it easy to write variables' content in the IDE debug log pane.
 
 For example:
 
 ```
-SysUt::OutputDebugStringOutputDebugString( _T( "The 'this' pointer for '%s' is 0x%p: " ), Name, this );
+SysUt::OutputDebugString( _T( "The 'this' pointer for '%s' is 0x%p: " ), Name, this );
 ```
 
 <img src="https://i.ibb.co/Rc7NzKn/5-3-B1402-B1-A98-B-4640-ABF3-3-F7-AD098-A484.png" alt="Figure 5">
