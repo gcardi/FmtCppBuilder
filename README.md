@@ -1,6 +1,6 @@
 # FmtCppBuilder
 
-It is a header-only wrapper to simplify the use of Sysutils::Format with C++Builder and works with new clang-based compilers (i.e. bcc32c / bcc64).
+It is a header-only wrapper to simplify the use of Sysutils::Format with C++Builder. Works with new clang-based compilers (i.e. bcc32c/bcc64).
 
 ## Getting Started
 
