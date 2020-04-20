@@ -3,7 +3,7 @@
 #include <vcl.h>
 #pragma hdrstop
 
-#include "..\include\SysUt.Fmt.h"
+#include "SysUt.Fmt.h"
 
 #include "Unit1.h"
 
