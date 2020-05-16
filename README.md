@@ -14,7 +14,7 @@ ShowMessage( Format ( _T( "X=%d, Y=%d" ), ARRAYOFCONST(( Left, Top )) );
 <img src="https://i.ibb.co/hmcr1K4/1-3-B1402-B1-A98-B-4640-ABF3-3-F7-AD098-A484.png" alt="Figure 1">
 
 It's a nice function the System.SysUtils.Format, apart from some 'glitches' with C++. For example, if you try to format floating point numbers other than long double (Extended in Delphi) there are problems. For example,  double is not supported out of the box
-with bcc32c.
+with bcc32c and, AFAIK, with bcc64.
 
 ```
 double a = 10.5;
@@ -98,7 +98,7 @@ The function is called Fmt and lives in the SysUt namespace.
 
 Since the SysUt::Fmt is based on System::Sysutils::Format, the syntax of the formatting string does not change: please see the official help of RAD Studio or C++Builder for details.
 
-As a bonus, there is also a wrapper around the OutputDebugString API which is used as the aforeseen Fmt function. The OutputDebugString function is very useful while debugging when breakpoints are too intrusive. Unfortunately, it is only able to accept LPTSTR. The wrapper around OutputDebugString provided here makes it easy to write variables' content in the IDE debug log pane.
+As a bonus, there is also a wrapper around the OutputDebugString API which is used as the aforeseen Fmt function. The OutputDebugString function is very useful while debugging when breakpoints are too intrusive. Unfortunately, it is only able to accept LPCTSTR. The wrapper around OutputDebugString provided here makes it easy to write variables' content in the IDE debug log pane.
 
 For example:
 
