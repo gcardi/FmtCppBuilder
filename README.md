@@ -8,29 +8,29 @@ Have you ever used the 'Format' function with C++Builder? I mean the System.SysU
 
 For example:
 
-```
+```C++
 ShowMessage( Format ( _T( "X=%d, Y=%d" ), ARRAYOFCONST(( Left, Top )) );
 ```
-<img src="https://i.ibb.co/hmcr1K4/1-3-B1402-B1-A98-B-4640-ABF3-3-F7-AD098-A484.png" alt="Figure 1">
+<img src="docs/assets/images/1.png" alt="Figure 1">
 
 It's a nice function the System.SysUtils.Format, apart from some 'glitches' with C++. For example, if you try to format floating point numbers other than long double (Extended in Delphi) there are problems. For example,  double is not supported out of the box
 with bcc32c and, AFAIK, with bcc64.
 
-```
+```C++
 double a = 10.5;
 ShowMessage( Format( _T( "a=%g" ), ARRAYOFCONST(( a )) ) );
 ```
 
-<img src="https://i.ibb.co/2k0Z8Lj/2-3-B1402-B1-A98-B-4640-ABF3-3-F7-AD098-A484.png" alt="Figure 2">
+<img src="docs/assets/images/2.png" alt="Figure 2">
 
 In order to fix the problem you have to make a cast to long double.
 
-```
+```C++
 double a = 10.5;
 ShowMessage( Format( _T( "a=%g" ), ARRAYOFCONST(( static_cast<long double>( a ) )) ) );
 ```
 
-<img src="https://i.ibb.co/yWWt7wX/3-3-B1402-B1-A98-B-4640-ABF3-3-F7-AD098-A484.png" alt="Figure 3">
+<img src="docs/assets/images/3.png" alt="Figure 3">
 
 The culprit is TVarRec which, e.g., manifests the problem when compiled with bcc32c. Since we can't change TVarRec, we can try to rewrite the Format function, making sure it can accept floating point parameters other than long double without reporting errors.
 
@@ -45,7 +45,7 @@ Just add the SysUt.Fmt.h file to your project, then use it in all those units wh
 
 For example:
 
-```
+```C++
 //---------------------------------------------------------------------------
 
 #include <vcl.h>
@@ -92,7 +92,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 
 Produces:
 
-<img src="https://i.ibb.co/x3N6v21/4-3-B1402-B1-A98-B-4640-ABF3-3-F7-AD098-A484.png" alt="Figure 4">
+<img src="docs/assets/images/4.png" alt="Figure 4">
 
 The function is called Fmt and lives in the SysUt namespace.
 
@@ -102,14 +102,14 @@ As a bonus, there is also a wrapper around the OutputDebugString API which is us
 
 For example:
 
-```
+```C++
 SysUt::OutputDebugString( _T( "The 'this' pointer for '%s' is 0x%p: " ), Name, this );
 ```
 
-<img src="https://i.ibb.co/Rc7NzKn/5-3-B1402-B1-A98-B-4640-ABF3-3-F7-AD098-A484.png" alt="Figure 5">
+<img src="docs/assets/images/5.png" alt="Figure 5">
 
 (see also the example project under 'test_app' directory)
 
 ## License
 
-This project is licensed under the "The Unlicense".
+This project is licensed under the "The Unlicense" and "MIT License".
